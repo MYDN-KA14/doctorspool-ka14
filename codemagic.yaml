@@ -1,0 +1,15 @@
+workflows:
+  default:
+    name: Fixed APK
+    instance_type: mac_mini_m1
+    max_build_duration: 20
+    environment:
+      flutter: stable
+    scripts:
+      - name: Fix package and build
+        script: |
+          rm -rf android
+          flutter create . --platforms=android --org com.mydnka14
+          flutter build apk --release --no-shrink --no-tree-shake-icons
+    artifacts:
+      - build/app/outputs/flutter-apk/*.apk
