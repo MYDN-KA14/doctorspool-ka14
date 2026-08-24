@@ -1,0 +1,16 @@
+workflows:
+  default:
+    name: APK Build
+    instance_type: mac_mini_m1
+    max_build_duration: 20
+    environment:
+      flutter: stable
+    scripts:
+      - name: Create android folder
+        script: |
+          flutter create . --platforms=android
+      - name: Build APK debug
+        script: |
+          flutter build apk --debug
+    artifacts:
+      - build/app/outputs/flutter-apk/*.apk
